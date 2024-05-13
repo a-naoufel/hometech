@@ -12,4 +12,3 @@ django-storages
 Pillow
 django
 python-dotenv
-asgiref

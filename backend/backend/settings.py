@@ -113,7 +113,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backend.wsgi.application'
+WSGI_APPLICATION ='backend.wsgi.application'
 
 
 # Database
@@ -181,6 +181,7 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDNTIALS = True
 
 if os.getcwd() == '/app':
     DEBUG = False
