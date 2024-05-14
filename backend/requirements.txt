@@ -13,3 +13,5 @@ Pillow
 django
 python-dotenv
 whitenoise
+gunicorn
+django-heroku
