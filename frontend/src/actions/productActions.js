@@ -39,13 +39,8 @@ export const listProducts = (keyword = '') => async (dispatch) => {
         dispatch({ type: PRODUCT_LIST_REQUEST })
 
         const { data } = await api.get(`api/products${keyword}`)
-        data.products.map ( product => (
-            product.image = "http://localhost:8000/".concat(product.image)
-        ))  
-        
-        
-        console.log(data)
 
+        
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data
@@ -66,10 +61,7 @@ export const listTopProducts = () => async (dispatch) => {
         dispatch({ type: PRODUCT_TOP_REQUEST })
 
         const { data } = await api.get(`api/products/top/`)
-        data.map ( product => (
-            product.image = "http://localhost:8000/".concat(product.image)
-        ))  
-              
+  
         dispatch({
             type: PRODUCT_TOP_SUCCESS,
             payload: data
