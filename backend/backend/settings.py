@@ -169,6 +169,7 @@ USE_L10N = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+WSGI_APPLICATION = "backend.wsgi.application"
 
 
 

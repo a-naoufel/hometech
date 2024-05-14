@@ -12,3 +12,4 @@ django-storages
 Pillow
 django
 python-dotenv
+whitenoise
