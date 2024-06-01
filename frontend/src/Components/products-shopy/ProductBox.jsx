@@ -2,12 +2,15 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaCartShopping, FaHeart, FaRegHeart } from "react-icons/fa6";
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../actions/cartActions'
 
 import RatingStars from "../ratingstars/RatingStars";
+import { Link } from "react-router-dom";
 
 export const ProductBox = ({ products }) => {
   const [likedProducts, setLikedProducts] = useState([]);
-
+  const dispatch = useDispatch();
   const handleHeartClick = (productId) => {
     if (likedProducts.includes(productId)) {
       setLikedProducts(likedProducts.filter((_id) => _id !== productId));
@@ -27,17 +30,20 @@ export const ProductBox = ({ products }) => {
           {/* Product Image */}
 
           <div className="relative flex h-[150px] w-[230px] items-center justify-center rounded-t-xl bg-white overflow-hidden">
+          <Link to={`/product/${product?._id}`}>
             <img
               src={product?.image}
               alt={product?.name}
               className="object-cover h-full w-full"
-            />
+              />
             {/* Wishlist Icon */}
+              </Link>
+              
             <div className="absolute text-white bg-bgColorWhite right-2 top-2 p-2 rounded-full">
               <div className="relative  cursor-pointer z-[1]">
                 <FaHeart
                   onClick={() => (
-                    handleHeartClick(product?.id),
+                    handleHeartClick(product?._id),
                     toast.success(
                       "Product successfully added to your wishlist",
                       {
@@ -69,9 +75,9 @@ export const ProductBox = ({ products }) => {
               </div>
               {/* Price */}
               <div className="relative text-base font-bold text-red-600 mx-0 w-fit">
-                {product?.price}${/* Original Price */}
+                {product?.price - product?.price * product.discount/100}${/* Original Price */}
                 <del className="absolute text-xs text-[#787575] bottom-0 left-full">
-                  {product?.newprice}$
+                  {product?.price}$
                 </del>
               </div>
             </div>
@@ -84,16 +90,14 @@ export const ProductBox = ({ products }) => {
                     toast.success(
                       `Product successfully added to your shopping cart`
                     );
+                     dispatch(addToCart(product?._id, 1))
                   }}
                 >
                   Add To Cart
                 </p>
                 <FaCartShopping />
               </button>
-              {/* Read More Button */}
-              <a className="bg-mainColor text-white w-[100px] rounded-lg px-1 py-1 text-center">
-                Read More
-              </a>
+              
             </div>
           </div>
         </div>

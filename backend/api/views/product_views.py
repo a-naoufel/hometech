@@ -14,6 +14,7 @@ from rest_framework import status
 @api_view(['GET'])
 def getProducts(request):
     query = request.query_params.get('keyword')
+    print('Query:', query)
     if query == None:
         query = ''
 
@@ -21,7 +22,8 @@ def getProducts(request):
         name__icontains=query).order_by('-createdAt')
 
     page = request.query_params.get('page')
-    paginator = Paginator(products, 5)
+    print(page)
+    paginator = Paginator(products, 2)
 
     try:
         products = paginator.page(page)
