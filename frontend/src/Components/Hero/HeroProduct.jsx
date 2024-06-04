@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../actions/cartActions";
 import { toast } from "react-toastify";
 
+
 // eslint-disable-next-line react/prop-types
 export default function HeroProduct({rated}) {
   // Function to hand le click event
@@ -14,7 +15,7 @@ export default function HeroProduct({rated}) {
     <div
       // Container div with Tailwind CSS classes
       className="container relative z-50 flex h-full w-[100vw] flex-col-reverse flex-wrap items-center justify-center gap-2 gap-y-6 py-12 lg:flex-row lg:justify-between"
-      style={{ minHeight: "calc(100vh - 87px)" }}
+      style={{ minHeight: "calc(80vh)" }}
     >
       {/* Text content */}
       <div className="w-full text-center leading-loose lg:w-1/2 lg:text-left">
@@ -59,14 +60,14 @@ export default function HeroProduct({rated}) {
             className="flex w-[150px] items-center gap-1 rounded-xl bg-mainColor px-3 py-1 text-white"
            
           >
-            <p>Show more</p>
+            <p>More</p>
             <BsArrowRight className="text-3xl pl-1" />
           </Link>
         </div>
       </div>
       {/* Image */}
       <Link to={`/product/${rated?._id}`}>
-      <img src={rated?.image} alt="#" width="400" height="400" />
+      <img className="rounded-5" src={rated?.image} alt="#" width="400" height="400" />
       </Link>
     </div>
   );
